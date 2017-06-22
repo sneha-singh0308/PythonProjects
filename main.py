@@ -36,7 +36,7 @@ def send_secret_message():
         'time' : datetime.now(),
         'sent_by_me' : True
     }
-
+    #length of the secret message shouldn't be greater than 20.
     if len(new_chat['message']) > 20:
         print "Message characters out of allowed limit!!TRY AGAIN"
 
@@ -58,15 +58,22 @@ def read_secret_message():
         'time': datetime.now(),
         'sent_by_me': False
     }
-
+    #handling the condition where the other spy didn't send any secret message.
     if len(new_chat['message']) == 0:
         print "No secret text has been sent!!"
 
-    else:
+    elif new_chat['message'] == "SOS" :
+        print "SAVE OUR SOULS!!HELP"
 
-        #appending/adding the new chat to the previous chats done by the user.
-        friends[read_friend_choice]['chats'].append(new_chat)
-        print "Your message has been saved"
+    elif new_chat['message'] == "TTYL":
+        print "Can't talk right now. TALK TO YOU LATER!!"
+
+    elif new_chat['message'] == "G2G":
+        print "Got to go right now. DANGER!!"
+
+    #appending/adding the new chat to the previous chats done by the user.
+    friends[read_friend_choice]['chats'].append(new_chat)
+    print "Your message has been saved"
 
 #defining class for choosing a friend from the list of friends.
 def choose_friend():
