@@ -37,8 +37,13 @@ def send_secret_message():
         'sent_by_me' : True
     }
 
-    friends[send_friend_choice]['chats'].append(new_chat)
-    print "Your message is ready to be saved"
+    if len(new_chat['message']) > 20:
+        print "Message characters out of allowed limit!!TRY AGAIN"
+
+    else:
+
+        friends[send_friend_choice]['chats'].append(new_chat)
+        print "Your message is ready to be saved"
 
 #defining function that helps the user to read secret message sent by another spy.
 def read_secret_message():
@@ -54,9 +59,14 @@ def read_secret_message():
         'sent_by_me': False
     }
 
-    #appending/adding the new chat to the previous chats done by the user.
-    friends[read_friend_choice]['chats'].append(new_chat)
-    print "Your message has been saved"
+    if len(new_chat['message']) == 0:
+        print "No secret text has been sent!!"
+
+    else:
+
+        #appending/adding the new chat to the previous chats done by the user.
+        friends[read_friend_choice]['chats'].append(new_chat)
+        print "Your message has been saved"
 
 #defining class for choosing a friend from the list of friends.
 def choose_friend():
